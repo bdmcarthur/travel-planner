@@ -5,7 +5,7 @@ const { Router } = require("express");
 const router = Router();
 
 const Trip = require("./../models/Trip");
-const User = require("./../models/user");
+const User = require("../models/User");
 
 require("dotenv").config();
 

@@ -7,11 +7,13 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const sassMiddleware = require("node-sass-middleware");
 const serveFavicon = require("serve-favicon");
-
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+const passport = require("./passport");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/user");
 const tripsRouter = require("./routes/trips");
-
+const mongoose = require("mongoose");
 const app = express();
 
 // Setup view engine
@@ -33,6 +35,33 @@ app.use(
     sourceMap: true
   })
 );
+
+// app.use(
+//   session({
+//     secret: "fraggle-rock", //pick a random string to make the hash that is generated secure
+//     store: new MongoStore({
+//       mongooseConnection: "mongodb://127.0.0.1:27017/travel-database"
+//     }),
+//     resave: false, //required
+//     saveUninitialized: false //required
+//   })
+// );
+app.use(
+  session({
+    secret: "sdf",
+    cookie: { maxAge: 60 * 60 * 24 * 1000 },
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60
+    })
+  })
+);
+
+// Passport
+app.use(passport.initialize());
+app.use(passport.session()); // calls the deserializeUser
 
 app.use("/", indexRouter);
 app.use("/trip", tripsRouter);

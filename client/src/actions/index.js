@@ -1,7 +1,17 @@
 import { ADD_TRIP, DELETE_TRIP, FETCH_TRIP } from "./types";
 import axios from "axios";
+import { LOGGED_USER } from "../actions/types";
 
 const apiUrl = "http://localhost:3000/trip";
+
+export const loggedInUser = data => {
+  return {
+    type: LOGGED_USER,
+    payload: {
+      userID: data._id
+    }
+  };
+};
 
 export const createTrip = ({ title, description }) => {
   return dispatch => {
