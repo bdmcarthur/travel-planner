@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+// import Days from "./components/Days";
+// import TripForm from "./components/TripForm";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import CreateTrip from "./containers/CreateTrip";
+// import TripList from "./containers/TripList";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App container">
+      {/* <Days />
+      <TripForm />
+      <AllTrips /> */}
+      <CreateTrip />
+      {/* <TripList /> */}
     </div>
   );
 }
