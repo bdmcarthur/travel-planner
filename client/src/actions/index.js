@@ -6,7 +6,7 @@ const apiUrl = "http://localhost:3000/trip";
 export const createTrip = ({ title, description }) => {
   return dispatch => {
     return axios
-      .post(`http://localhost:3000/trip/add`, { title, description })
+      .post(`${apiUrl}/add`, { title, description })
       .then(response => {
         dispatch(createTripSuccess(response.data));
       })
@@ -61,7 +61,7 @@ export const fetchAllTrips = () => {
     return axios
       .get(`${apiUrl}/all`)
       .then(response => {
-        dispatch(fetchTrips(response.data));
+        dispatch(fetchTrips(response.data.data.items));
       })
       .catch(error => {
         throw error;

@@ -4,7 +4,7 @@ import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CreateTrip from "./containers/CreateTrip";
-// import TripList from "./containers/TripList";
+import TripList from "./containers/TripList";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <TripForm />
       <AllTrips /> */}
       <CreateTrip />
-      {/* <TripList /> */}
+      <TripList />
     </div>
   );
 }

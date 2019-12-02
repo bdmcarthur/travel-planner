@@ -4,12 +4,14 @@ import Trip from "../components/Trips";
 import { deleteTrip } from "../actions";
 
 function TripList({ trips, onDelete }) {
+  console.log(trips);
   if (!trips.length) {
     return <div>No trips</div>;
   }
   return (
     <div>
       {trips.map(trip => {
+        console.log("trip", trip);
         return <Trip trip={trip} onDelete={onDelete} key={trip._id} />;
       })}
     </div>
